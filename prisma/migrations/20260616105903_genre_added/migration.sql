@@ -1,0 +1,5 @@
+-- CreateTable
+CREATE TABLE "Genre" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "genres" TEXT NOT NULL
+);

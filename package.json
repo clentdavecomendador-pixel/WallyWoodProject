@@ -1,0 +1,38 @@
+{
+  "name": "wallywood",
+  "version": "1.0.0",
+  "description": "wallywood opgave",
+  "homepage": "https://github.com/clentdavecomendador-pixel/Wallywood#readme",
+  "bugs": {
+    "url": "https://github.com/clentdavecomendador-pixel/Wallywood/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clentdavecomendador-pixel/Wallywood.git"
+  },
+  "license": "ISC",
+  "author": "Clent Dave Comendador",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.3",
+    "prisma": "^7.8.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "better-sqlite3": "^12.11.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}

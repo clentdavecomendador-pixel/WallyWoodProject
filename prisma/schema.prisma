@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Poster{
+  id Int @id @default(autoincrement())
+  name String
+  slug String
+  description String
+  image String
+  width Int
+  height Int
+  price Float @default(0.00)
+  stock Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("posters")
+}
+
+model User {
+  id Int @id @default(autoincrement()) // Gives ID
+  firstname String // firstname is in String = text
+  lastname String // lastname is in String = text
+  email String @unique // @unique makes sure that no one is using the same email
+  password String // password is in String = text
+  role Role @default(USER) // used the enum from above
+  isActive Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("users")
+}
+
+model Cartline{
+  id Int @id @default(autoincrement())
+  userId Int
+  posterId Int
+  quantity Int
+  createdAt DateTime @default(now())
+
+  @@map("cart_lines")
+}
+
+model userRating{
+  id Int @id @default(autoincrement())
+  userId Int
+  posterId Int
+  numStars Int
+  createdAt DateTime @default(now())
+
+  @@map("user_ratings")
+}
+
+model Genre{
+  id Int @id @default(autoincrement())
+  title String
+  slug String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("genres")
+}
+
+model genrePosterRel{
+  genreId Int
+  posterId Int
+
+  @@id([genreId, posterId])
+
+  @@map("genre_poster_rel")
+}
