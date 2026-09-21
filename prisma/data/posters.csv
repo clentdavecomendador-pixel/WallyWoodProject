@@ -1,0 +1,5 @@
+id,name,slug,description,image,width,height,price,stock
+1,Sunrise Over Hills,sunrise-over-hills,A warm landscape poster,images/sunrise.jpg,24,36,29.99,10
+2,City Lights,city-lights,A moody urban print,images/city.jpg,30,40,39.99,8
+3,Forest Calm,forest-calm,A nature-inspired piece,images/forest.jpg,20,30,24.99,12
+4,Smooth Lines,smooth-lines,Minimal abstract artwork,images/lines.jpg,18,24,19.99,15
