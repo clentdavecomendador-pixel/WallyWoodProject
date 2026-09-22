@@ -62,8 +62,35 @@ class PosterController {
                     name: 'asc' // or desc
                 }
             })
+            const relations = await prisma.genrePosterRel.findMany({
+                select: {
+                    genreId: true,
+                    posterId: true,
+                },
+            })
+
+            const genres = await prisma.genre.findMany({
+                select: {
+                    id: true,
+                    title: true,
+                },
+            })
+
+            const genreTitles = new Map(genres.map((genre) => [genre.id, genre.title]))
+            const genreByPoster = new Map(
+                relations.map((relation) => [
+                    relation.posterId,
+                    genreTitles.get(relation.genreId) ?? "",
+                ])
+            )
+
             console.timeEnd("poster")
-            return res.status(200).json(data)
+            return res.status(200).json(
+                data.map((poster) => ({
+                    ...poster,
+                    genre: genreByPoster.get(poster.id) ?? "",
+                }))
+            )
         } catch (error) {
             console.error(`we can't get the id you're looking for: ${error}`)
         }

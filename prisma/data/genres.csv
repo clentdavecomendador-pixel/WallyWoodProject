@@ -1,6 +1,21 @@
 id,title,slug
-1,Abstract Art,abstract-art
-2,Modern Living,modern-living
-3,Minimalist,minimalist
-4,Nature,nature
-5,Urban,urban
+1,Action,action
+2,Drama,drama
+3,Comedy,comedy
+4,Horror,horror
+5,Science Fiction,science-fiction
+6,Adventure,adventure
+7,Animation,animation
+8,Crime,crime
+9,Documentary,documentary
+10,Fantasy,fantasy
+11,Historical,historical
+12,Mystery,mystery
+13,Romance,romance
+14,Thriller,thriller
+15,War,war
+16,Western,western
+17,Family,family
+18,Musical,musical
+19,Sport,sport
+20,Superhero,superhero
