@@ -22,7 +22,7 @@ model Poster{
   name String
   slug String
   description String
-  genre String
+  genre String @default("")
   image String
   width Int
   height Int

@@ -15,6 +15,69 @@ const adapter = new PrismaBetterSqlite3({
 
 const prisma = new PrismaClient({ adapter });
 
+const parseCsvLine = (line: string) => {
+  const values: string[] = [];
+  let value = '';
+  let quoted = false;
+
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+
+    if (character === '"') {
+      if (quoted && line[index + 1] === '"') {
+        value += '"';
+        index += 1;
+      } else {
+        quoted = !quoted;
+      }
+    } else if (character === ',' && !quoted) {
+      values.push(value.trim());
+      value = '';
+    } else {
+      value += character;
+    }
+  }
+
+  values.push(value.trim());
+  return values;
+};
+
+const parseCsvRecords = (content: string) => {
+  const records: string[] = [];
+  let record = '';
+  let quoted = false;
+
+  for (let index = 0; index < content.length; index += 1) {
+    const character = content[index];
+
+    if (character === '"') {
+      if (quoted && content[index + 1] === '"') {
+        record += '""';
+        index += 1;
+      } else {
+        quoted = !quoted;
+        record += character;
+      }
+    } else if ((character === '\n' || character === '\r') && !quoted) {
+      if (character === '\r' && content[index + 1] === '\n') {
+        index += 1;
+      }
+      if (record.trim()) {
+        records.push(record);
+      }
+      record = '';
+    } else {
+      record += character;
+    }
+  }
+
+  if (record.trim()) {
+    records.push(record);
+  }
+
+  return records;
+};
+
 const readCsv = (fileName: string) => {
   const filePath = path.join(__dirname, 'data', fileName);
   const content = fs.readFileSync(filePath, 'utf8').trim();
@@ -23,22 +86,22 @@ const readCsv = (fileName: string) => {
     return [];
   }
 
-  const [headerLine, ...rows] = content.split(/\r?\n/).filter(Boolean);
-  const headers = headerLine.split(',');
+  const [headerLine, ...rows] = parseCsvRecords(content);
+  const headers = parseCsvLine(headerLine);
 
   return rows.map((row) => {
-    const values = row.split(',');
+    const values = parseCsvLine(row);
     const obj: Record<string, string> = {};
 
     headers.forEach((header, index) => {
-      obj[header.trim()] = (values[index] ?? '').trim();
+      obj[header] = values[index] ?? '';
     });
 
     return obj;
   });
 };
 
-const parseBoolean = (value: string) => value.toLowerCase() === 'true';
+const parseBoolean = (value: string) => ['1', 'true'].includes(value.trim().toLowerCase());
 
 const main = async () => {
   await prisma.genrePosterRel.deleteMany();
@@ -48,12 +111,12 @@ const main = async () => {
   await prisma.genre.deleteMany();
   await prisma.user.deleteMany();
 
-  const usersCsv = readCsv('users.csv');
-  const postersCsv = readCsv('posters.csv');
-  const genresCsv = readCsv('genres.csv');
+  const usersCsv = readCsv('user.csv');
+  const postersCsv = readCsv('poster.csv');
+  const genresCsv = readCsv('genre.csv');
   const cartlinesCsv = readCsv('cartlines.csv');
   const userRatingsCsv = readCsv('user_ratings.csv');
-  const genrePosterRelCsv = readCsv('genre_poster_rel.csv');
+  const genrePosterRelCsv = readCsv('genrePosterRel.csv');
 
   if (usersCsv.length > 0) {
     await prisma.user.createMany({
