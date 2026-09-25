@@ -6,10 +6,10 @@ export const Navbar = () => {
         <NavbarStyled>
             <ul>
                 <li><NavLink to="/">Forside</NavLink></li>
-                <li><NavLink to="/poster">plakater</NavLink></li>
-                <li><NavLink to="/aboutus">om os</NavLink></li>
-                <li><NavLink to="/contactus">kontact os</NavLink></li>
-                <li><NavLink to="/login">login</NavLink></li>
+                <li><NavLink to="/poster">Plakater</NavLink></li>
+                <li><NavLink to="/aboutus">Om os</NavLink></li>
+                <li><NavLink to="/contactus">Kontact os</NavLink></li>
+                <li><NavLink to="/login">Login</NavLink></li>
             </ul>
         </NavbarStyled>
     )

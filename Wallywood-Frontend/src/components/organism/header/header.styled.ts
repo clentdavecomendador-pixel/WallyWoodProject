@@ -13,4 +13,24 @@ ${Reset}
         font-weight: 800;
         color: #D97852;
     }
+    #basketId{
+     ${Reset}
+     display: flex;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border: none;
+     background-color: transparent;
+     padding: 0.5rem;
+     color: #000000;
+     transition: 2ms;
+     svg{
+         width: 2rem;
+         height: 2rem;
+        }
+            &.active{
+             color: #D97852;
+             transform: scale(1.35);
+            }
+    }
 `

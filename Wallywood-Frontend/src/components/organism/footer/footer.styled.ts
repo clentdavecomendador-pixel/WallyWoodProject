@@ -5,7 +5,7 @@ export const FooterStyled = styled.footer`
  ${Reset}
  display: grid;
  grid-template-columns: repeat(2 , 1fr);
- padding: 0.5rem 1rem;
+ padding: 1rem 1rem;
     article{
      font-size: 1.25rem;
         h3{

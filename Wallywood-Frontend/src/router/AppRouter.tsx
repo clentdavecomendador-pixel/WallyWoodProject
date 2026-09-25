@@ -4,8 +4,9 @@ import { Posters } from "../pages/posters/posters"
 import { AboutUs } from "../pages/about us/aboutus"
 import { ContactUs } from "../pages/contact us/contactus"
 import { Login } from "../pages/login/login"
-import { GenrePosters } from "../pages/posters/genreposters"
+import { GenrePosters } from "../pages/posters/Genre Poster/genreposters"
 import { PosterDetails } from "../pages/posters/posterdetails"
+import { BasketContent } from "../pages/Basket/basket"
 
 export const AppRouter = () => {
     return(
@@ -17,6 +18,7 @@ export const AppRouter = () => {
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/basket" element={<BasketContent />} />
         </Routes>
     )
 }

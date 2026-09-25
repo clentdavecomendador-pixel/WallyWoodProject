@@ -15,6 +15,24 @@ export const HomePageStyled = styled.section`
                 display: grid;
                 gap: 1rem;
                 padding: 1rem;
+                    div{
+                     display: flex;
+                     justify-content: space-between;
+                        button{
+                         padding: 0.5rem 1rem;
+                            span{
+                                svg{
+                                 width: 1.5rem;
+                                 height: 1.5rem;
+                                }
+                            }
+                            
+                            a{
+                             color: #000000;
+                             text-decoration: none;
+                            }
+                        }
+                    }
             }
         }
     }

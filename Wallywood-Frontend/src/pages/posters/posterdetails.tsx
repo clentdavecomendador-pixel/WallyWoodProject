@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import { usePoster } from "../../hooks/usePoster"
 import { PostersStyled } from "./posters.styled"
 
@@ -12,10 +12,16 @@ export const PosterDetails = () => {
 
     return (
         <PostersStyled>
-            <Link to="/poster">Tilbage til plakater</Link>
+            <NavLink to="/poster" id="backPoster">Tilbage til plakater</NavLink>
             <h1>{poster.name}</h1>
             <img src={poster.image} alt={poster.name} />
-            <p>{poster.description}</p>
+            <p>{poster.description
+                .replace("&#8216;", "'")
+                .replace("&#8217;", "'")
+                .replace("&#8220;", '"')
+                .replace("&#8221;", '"')
+                .replace("&#8211;", "-")
+            }</p>
             <p>Genre: {poster.genre}</p>
             <p>Pris: {poster.price}</p>
             <p>På lager: {poster.stock}</p>
