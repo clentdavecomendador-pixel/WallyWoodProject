@@ -1,6 +1,6 @@
 import { NavLink, useParams } from "react-router-dom"
-import { usePoster } from "../../hooks/usePoster"
-import { PostersStyled } from "./posters.styled"
+import { usePoster } from "../../../hooks/usePoster"
+import { PostersStyled } from "../posters.styled"
 
 export const PosterDetails = () => {
     const { id } = useParams()
